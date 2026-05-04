@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>TwinPilot — Let the cool AI people get the things done</title>
+  <link rel="icon" type="image/svg+xml" href="../icons/favicon.svg"/>
+  <link rel="stylesheet" href="../colors/tokens.css"/>
+  <link rel="stylesheet" href="../typography/typography.css"/>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{background:var(--tp-bg);color:var(--tp-text);font-family:var(--tp-font-body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+    /* Nav */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(12px);background:rgba(8,9,15,0.8);border-bottom:1px solid var(--tp-border-subtle)}
+    nav .inner{max-width:1100px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:32px}
+    nav .logo{font-family:var(--tp-font-heading);font-weight:800;font-size:20px;letter-spacing:-0.03em}
+    nav .logo .pilot{background:var(--tp-gradient-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    nav .links{display:flex;gap:24px;flex:1}
+    nav .links a{color:var(--tp-text-muted);text-decoration:none;font-size:15px;font-weight:500;transition:color 0.15s}
+    nav .links a:hover{color:var(--tp-text)}
+    nav .cta{padding:8px 20px;border-radius:8px;background:var(--tp-violet-500);color:#fff;font-weight:600;font-size:14px;text-decoration:none;transition:opacity 0.15s}
+    nav .cta:hover{opacity:0.85}
+
+    /* Hero */
+    .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 40%, rgba(124,92,252,0.08) 0%, transparent 70%);pointer-events:none}
+    .hero > *{position:relative;z-index:1}
+    .hero .badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:999px;font-size:12px;font-weight:600;background:rgba(124,92,252,0.1);color:var(--tp-violet-400);border:1px solid rgba(124,92,252,0.2);margin-bottom:24px}
+    .hero h1{font-family:var(--tp-font-heading);font-size:clamp(40px,7vw,72px);font-weight:800;letter-spacing:-0.04em;line-height:1.05;max-width:860px;margin-bottom:20px}
+    .hero h1 .gradient{background:var(--tp-gradient-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .hero p{font-size:20px;color:var(--tp-text-muted);max-width:620px;line-height:1.6;margin-bottom:32px}
+    .hero .buttons{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+    .hero .btn-primary{padding:12px 28px;border-radius:10px;background:var(--tp-gradient-brand);color:#fff;font-weight:700;font-size:15px;text-decoration:none;box-shadow:0 0 30px rgba(124,92,252,0.3);transition:transform 0.15s,box-shadow 0.15s;border:none;cursor:pointer;font-family:var(--tp-font-body)}
+    .hero .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 40px rgba(124,92,252,0.4)}
+    /* Three-color CTA set — left (Watch demo) violet, middle (Join
+       the waiting list) brand gradient, right (Be a Beta tester)
+       green. The trio echoes the logo's palette without reshaping
+       the buttons themselves. */
+    .btn-demo{padding:12px 28px;border-radius:10px;background:linear-gradient(135deg,#7C5CFC 0%,#5b42cc 100%);color:#fff;font-weight:700;font-size:15px;text-decoration:none;border:none;cursor:pointer;font-family:var(--tp-font-body);box-shadow:0 0 30px rgba(124,92,252,0.35);transition:transform 0.15s,box-shadow 0.15s;display:inline-flex;align-items:center}
+    .btn-demo:hover{transform:translateY(-2px);box-shadow:0 0 40px rgba(124,92,252,0.5)}
+    .btn-beta{padding:12px 28px;border-radius:10px;background:linear-gradient(135deg,#06D6A0 0%,#04a37a 100%);color:#fff;font-weight:700;font-size:15px;border:none;cursor:pointer;font-family:var(--tp-font-body);box-shadow:0 0 30px rgba(6,214,160,0.35);transition:transform 0.15s,box-shadow 0.15s}
+    .btn-beta:hover{transform:translateY(-2px);box-shadow:0 0 40px rgba(6,214,160,0.5)}
+    .hero .btn-secondary{padding:12px 28px;border-radius:10px;background:var(--tp-surface);border:1px solid var(--tp-border);color:var(--tp-text);font-weight:600;font-size:15px;text-decoration:none;transition:border-color 0.15s;cursor:pointer;font-family:var(--tp-font-body)}
+    .hero .btn-secondary:hover{border-color:var(--tp-violet-500)}
+
+    /* Feature sections */
+    .features{max-width:1100px;margin:0 auto;padding:80px 24px}
+    .features .section-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--tp-violet-400);margin-bottom:12px}
+    .features h2{font-family:var(--tp-font-heading);font-size:40px;font-weight:700;letter-spacing:-0.02em;margin-bottom:48px;max-width:620px}
+    .features .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+    .feature-card{background:var(--tp-surface);border:1px solid var(--tp-border-subtle);border-radius:14px;padding:28px;transition:border-color 0.2s,box-shadow 0.2s}
+    .feature-card:hover{border-color:var(--tp-border);box-shadow:0 8px 32px rgba(0,0,0,0.3)}
+    .feature-card .icon{width:40px;height:40px;border-radius:10px;background:var(--tp-surface-2);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px}
+    .feature-card h3{font-size:18px;font-weight:700;margin-bottom:8px}
+    .feature-card p{font-size:15px;color:var(--tp-text-muted);line-height:1.6}
+    .feature-card .tag{display:inline-block;font-size:10px;font-weight:600;padding:2px 8px;border-radius:4px;margin-top:10px;text-transform:uppercase;letter-spacing:0.05em}
+
+    /* Divider */
+    .divider{max-width:1100px;margin:0 auto;height:1px;background:linear-gradient(90deg, transparent, var(--tp-border), transparent)}
+
+    /* Pricing */
+    .pricing{max-width:1100px;margin:0 auto;padding:80px 24px;text-align:center}
+    .pricing .section-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--tp-violet-400);margin-bottom:12px}
+    .pricing h2{font-family:var(--tp-font-heading);font-size:40px;font-weight:700;letter-spacing:-0.02em;margin-bottom:48px}
+    .pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;text-align:left;max-width:980px;margin:0 auto}
+    .pricing-card{background:var(--tp-surface);border:1px solid var(--tp-border-subtle);border-radius:16px;padding:32px 28px;display:flex;flex-direction:column;transition:border-color 0.2s,box-shadow 0.2s}
+    .pricing-card.highlighted{border-color:var(--tp-violet-500);box-shadow:0 0 32px rgba(124,92,252,0.12)}
+    .pricing-card .tier-label{font-family:var(--tp-font-heading);font-size:22px;font-weight:800;margin-bottom:6px}
+    .pricing-card .tier-tagline{font-size:14px;color:var(--tp-text-muted);margin-bottom:24px;line-height:1.5}
+    .pricing-card .tier-status{display:inline-block;font-size:11px;font-weight:700;padding:4px 12px;border-radius:999px;background:rgba(124,92,252,0.1);color:var(--tp-violet-400);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:24px;align-self:flex-start}
+    .pricing-card ul.tier-features{list-style:none;padding:0;margin:0}
+    .pricing-card ul.tier-features li{font-size:15px;color:var(--tp-text-muted);line-height:1.5;padding:10px 0;border-bottom:1px solid var(--tp-border-subtle);display:flex;align-items:flex-start;gap:10px}
+    .pricing-card ul.tier-features li::before{content:"—";color:var(--tp-violet-400);flex-shrink:0}
+    .pricing-card ul.tier-features li:last-child{border-bottom:none}
+    .pricing-cta-wrap{margin-top:40px}
+
+    /* Philosophy */
+    .philosophy{max-width:700px;margin:0 auto;padding:80px 24px;text-align:center}
+    .philosophy .quote{font-family:var(--tp-font-heading);font-size:28px;font-weight:700;letter-spacing:-0.02em;line-height:1.3;margin-bottom:12px}
+    .philosophy .quote .g{background:var(--tp-gradient-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .philosophy .sub{font-size:15px;color:var(--tp-text-muted);line-height:1.6;max-width:480px;margin:0 auto}
+
+    /* CTA */
+    .cta-section{text-align:center;padding:100px 24px;position:relative}
+    .cta-section::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 50% 80%, rgba(6,214,160,0.06) 0%, transparent 70%);pointer-events:none}
+    .cta-section > *{position:relative;z-index:1}
+    .cta-section h2{font-family:var(--tp-font-heading);font-size:40px;font-weight:800;letter-spacing:-0.03em;margin-bottom:16px}
+    .cta-section h2 .g{background:var(--tp-gradient-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .cta-section p{font-size:16px;color:var(--tp-text-muted);margin-bottom:28px}
+
+    /* Footer */
+    footer{border-top:1px solid var(--tp-border-subtle);padding:32px 24px;text-align:center;font-size:13px;color:var(--tp-text-muted)}
+
+    /* Waitlist modal */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(8,9,15,0.85);backdrop-filter:blur(6px);z-index:1000;display:flex;align-items:center;justify-content:center;padding:16px}
+    .modal-backdrop[hidden]{display:none}
+    .modal-dialog{background:var(--tp-surface);border:1px solid var(--tp-border);border-radius:16px;padding:36px 32px 32px;max-width:440px;width:100%;position:relative}
+    .modal-close{position:absolute;top:14px;right:14px;background:none;border:none;color:var(--tp-text-muted);font-size:24px;line-height:1;cursor:pointer;padding:6px 10px;border-radius:8px;font-family:var(--tp-font-body)}
+    .modal-close:hover{color:var(--tp-text);background:var(--tp-surface-2)}
+    .modal-dialog h3{font-family:var(--tp-font-heading);font-size:22px;font-weight:700;margin-bottom:6px;letter-spacing:-0.02em}
+    .modal-dialog > p{font-size:14px;color:var(--tp-text-muted);margin-bottom:22px;line-height:1.5}
+    .modal-dialog label{display:block;margin-bottom:14px;font-size:12px;font-weight:600;color:var(--tp-text-muted);text-transform:uppercase;letter-spacing:0.05em}
+    .modal-dialog input{display:block;width:100%;margin-top:6px;padding:10px 12px;background:var(--tp-bg);border:1px solid var(--tp-border-subtle);border-radius:8px;color:var(--tp-text);font-size:14px;font-family:var(--tp-font-body);text-transform:none;letter-spacing:normal}
+    .modal-dialog input:focus{outline:none;border-color:var(--tp-violet-500);box-shadow:0 0 0 3px rgba(124,92,252,0.1)}
+    .modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:6px}
+    .modal-actions .btn-ghost{padding:10px 20px;border-radius:8px;background:none;border:1px solid var(--tp-border);color:var(--tp-text);font-weight:600;font-size:14px;cursor:pointer;font-family:var(--tp-font-body)}
+    .modal-actions .btn-ghost:hover{border-color:var(--tp-text-muted)}
+    .modal-actions .btn-primary{padding:10px 24px;border-radius:8px;background:var(--tp-gradient-brand);color:#fff;border:none;font-weight:700;font-size:14px;cursor:pointer;font-family:var(--tp-font-body)}
+    .modal-actions .btn-primary:disabled{opacity:0.5;cursor:not-allowed}
+    .modal-msg{margin-top:14px;padding:10px 14px;border-radius:8px;font-size:13px;line-height:1.5}
+    .modal-msg.success{background:rgba(6,214,160,0.1);color:var(--tp-cyan-400);border:1px solid rgba(6,214,160,0.2)}
+    .modal-msg.error{background:rgba(239,68,68,0.1);color:var(--tp-danger);border:1px solid rgba(239,68,68,0.2)}
+
+    @media(max-width:768px){
+      .features .grid{grid-template-columns:1fr}
+      .pricing-grid{grid-template-columns:1fr}
+      .hero h1{font-size:36px}
+      nav .inner{gap:16px}
+      nav .links{gap:16px}
+    }
+
+    /* Docs overlay — iframe that covers the viewport below the nav so
+       clicking "Docs" doesn't full-page-navigate away from the marketing
+       site. The landing nav stays visible at the top (z-index:100);
+       this overlay sits below it at z-index:50. */
+    #docs-overlay{position:fixed;top:52px;left:0;right:0;bottom:0;z-index:50;display:none;background:var(--tp-bg)}
+    #docs-overlay.open{display:block}
+    #docs-overlay iframe{width:100%;height:100%;border:none;background:var(--tp-bg)}
+  </style>
+</head>
+<body>
+
+<!-- Docs overlay: injected once and kept around so iframe history isn't
+     blown on every open. Hidden until user clicks any [data-docs-open] link. -->
+<div id="docs-overlay" aria-hidden="true">
+  <iframe id="docs-iframe" src="about:blank" title="Docs" loading="lazy"></iframe>
+</div>
+
+<nav>
+  <div class="inner">
+    <a href="/" class="logo" style="text-decoration:none;color:inherit"><svg width="24" height="24" viewBox="40 68 176 120" fill="none" style="vertical-align:-4px;margin-right:5px"><path d="M56 80 L128 128 L56 176Z" fill="#7C5CFC"/><path d="M200 80 L128 128 L200 176Z" fill="#06D6A0"/><circle cx="128" cy="128" r="6" fill="#fff"/></svg>Twin<span class="pilot">Pilot</span></a>
+    <div class="links">
+      <a href="#pricing">Pricing</a>
+      <a href="/docs" data-docs-open>Docs</a>
+    </div>
+    <a href="/login" class="cta">Enter</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="badge">Now in public beta</div>
+  <h1>Let the cool AI people<br/><span class="gradient">get the things done.</span></h1>
+  <p>TwinPilot builds <strong>Digital Twins</strong> of your company, teams, and processes — powered by agentic AI collaboration.<br/><strong>Any industry, any workflow. You stay in control.</strong></p>
+  <div class="buttons">
+    <a href="#how-it-works" class="btn-demo">Watch demo</a>
+    <button type="button" class="btn-primary" data-waitlist-open>Join the waiting list</button>
+    <button type="button" class="btn-beta" data-beta-open>Be a Beta tester</button>
+  </div>
+</section>
+
+<!-- ═══ Core Platform ═══ -->
+<section class="features" id="how-it-works">
+  <div class="section-label">Core Platform</div>
+  <h2>A factory floor for your org's digital twin.</h2>
+  <div class="grid">
+    <div class="feature-card">
+      <div class="icon">🏭</div>
+      <h3>Factories</h3>
+      <p>One factory per slice of your business — software house, research lab, content studio, ops team. Each holds its own agents, pipelines, DNA, and credentials. Self-contained, shareable, versioned.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">🎨</div>
+      <h3>Studio</h3>
+      <p>Design the twin. Compose agents with persona, contract, and tools. Wire them into pipelines with phases, gates, and SIPOC-aware steps. Edit visually or by file — your call.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">🚀</div>
+      <h3>Office</h3>
+      <p>Run projects end-to-end. Dispatch sprints, watch each agent work in real time, approve human gates, inspect artifacts. Stream logs live; resume, retry, or branch from any step.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">🧩</div>
+      <h3>Any Niche</h3>
+      <p>Software, research, content, operations, compliance, IoT, finance — the substrate is domain-agnostic. Your agent definitions and pipeline shape teach TwinPilot what the work looks like.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ Infrastructure ═══ -->
+<section class="features">
+  <div class="section-label">Infrastructure</div>
+  <h2>Every layer is yours. No vendor lock-in.</h2>
+  <div class="grid">
+    <div class="feature-card">
+      <div class="icon">🧠</div>
+      <h3>LLMs on your terms</h3>
+      <p>Claude, GPT, Gemini, DeepSeek, Mistral, Qwen, local models — plug any provider with your own API keys. Pick the model per agent, per step, even per sprint. No tax on your token spend, no proprietary wrapper between you and the provider.</p>
+      <div class="tag" style="background:rgba(59,130,246,0.1);color:var(--tp-blue-400)">BYOK · multi-provider</div>
+    </div>
+    <div class="feature-card">
+      <div class="icon">💻</div>
+      <h3>Local dev that feels native</h3>
+      <p>Run sprints on your machine using the tools you already pay for — Claude Code, Codex, Aider, Plandex, Goose. The TwinPilot CLI brokers the work to your CLIs and streams results back to the platform. Your subscription, your laptop, your filesystem.</p>
+      <div class="tag" style="background:rgba(124,92,252,0.1);color:var(--tp-violet-400)">CLI subs + local FS</div>
+    </div>
+    <div class="feature-card">
+      <div class="icon">📦</div>
+      <h3>Storage you own</h3>
+      <p>Artifacts live in <em>your</em> Supabase bucket or <em>your</em> filesystem — never in a platform-owned black box. Push sprint outputs to GitHub repos under the owner you choose; one sprint can fan out to multiple destinations. No vendor data prison.</p>
+      <div class="tag" style="background:rgba(6,214,160,0.1);color:var(--tp-cyan-400)">Bucket · Local · Git</div>
+    </div>
+    <div class="feature-card">
+      <div class="icon">📚</div>
+      <h3>RAG built in</h3>
+      <p>Turn docs, URLs, GitHub repos, and Slack threads into a pgvector-backed knowledge base. Agents search it through MCP tools — no wiring, no bespoke embeddings pipeline. Scope by project, share across factories.</p>
+      <div class="tag" style="background:rgba(6,214,160,0.1);color:var(--tp-cyan-400)">pgvector · MCP</div>
+    </div>
+    <div class="feature-card">
+      <div class="icon">⚡</div>
+      <h3>Autonomy via triggers</h3>
+      <p>Start sprints from the UI, CLI, REST API, or GitHub webhooks. Schedule recurring runs. Auto-push on completion. Pipelines wait on human gates and resume when the signal arrives — your digital twin doesn't sleep just because you do.</p>
+      <div class="tag" style="background:rgba(124,92,252,0.1);color:var(--tp-violet-400)">Event-driven · scheduled</div>
+    </div>
+    <div class="feature-card">
+      <div class="icon">🛒</div>
+      <h3>Marketplace of agents</h3>
+      <p>Install proven agents and whole factory blueprints from the community store. Publish yours — free or paid. Each listing carries your org's identity so credit and revenue route back cleanly.</p>
+      <div class="tag" style="background:rgba(245,158,11,0.1);color:var(--tp-warning)">Share · remix · earn</div>
+    </div>
+    <div class="feature-card">
+      <div class="icon">🔍</div>
+      <h3>Audit by default</h3>
+      <p>Every agent call, tool invocation, model choice, token cost, and artifact write is logged and replayable. Sprint-scoped audit folders ship alongside your outputs, signed by the run. Compliance reviews stop being archaeology.</p>
+      <div class="tag" style="background:rgba(6,214,160,0.1);color:var(--tp-cyan-400)">Full provenance</div>
+    </div>
+    <div class="feature-card">
+      <div class="icon">🔔</div>
+      <h3>Notifications that act</h3>
+      <p>Telegram messages with inline approve/reject buttons. Webhooks to Slack, Discord, Teams, PagerDuty. In-app bell with realtime deltas. The loop closes where your team already is.</p>
+      <div class="tag" style="background:rgba(245,158,11,0.1);color:var(--tp-warning)">Multi-channel</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ Control ═══ -->
+<section class="features">
+  <div class="section-label">Control</div>
+  <h2>Transparent by design. Yours to govern.</h2>
+  <div class="grid">
+    <div class="feature-card">
+      <div class="icon">🛑</div>
+      <h3>Human gates</h3>
+      <p>Insert human-approval steps anywhere in a pipeline. Reviewers approve or reject from Telegram, a signed link, or the dashboard — and the sprint picks up exactly where it paused. No silent drift.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">💸</div>
+      <h3>Budgets & guardrails</h3>
+      <p>Per-project token/cost budgets, per-agent model ceilings, timeouts, rejection strategies. A runaway agent hits your ceiling, not your bill.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">🔐</div>
+      <h3>Tenant isolation</h3>
+      <p>Row-level security down to every table. Workers authenticate per tenant via JWT, never with a shared service key. One compromised tenant doesn't leak into the rest.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ Philosophy ═══ -->
+<section class="philosophy">
+  <div class="quote">You bring the vision.<br/><span class="g">Your crew brings the execution.</span></div>
+  <div class="sub">TwinPilot is an orchestration layer — not a walled garden. Your LLM keys, your CLI subscriptions, your buckets, your repos, your agents, your audit trail. We don't mediate between you and the work: we coordinate the crew that carries it out and make every step inspectable. Move off the platform whenever you want; the artifacts are already in your own GitHub and your own bucket.</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ Pricing ═══ -->
+<section class="pricing" id="pricing">
+  <div class="section-label">Pricing</div>
+  <h2>Choose the plan that fits your team.</h2>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="tier-label">Starter</div>
+      <div class="tier-tagline">For solo builders starting out.</div>
+      <div class="tier-status">Coming soon</div>
+      <ul class="tier-features">
+        <li>1 factory</li>
+        <li>3 active projects</li>
+        <li>Community support</li>
+      </ul>
+    </div>
+    <div class="pricing-card highlighted">
+      <div class="tier-label">Pro</div>
+      <div class="tier-tagline">For teams shipping every week.</div>
+      <div class="tier-status">Coming soon</div>
+      <ul class="tier-features">
+        <li>Unlimited factories</li>
+        <li>Unlimited projects</li>
+        <li>Priority support</li>
+      </ul>
+    </div>
+    <div class="pricing-card">
+      <div class="tier-label">Enterprise</div>
+      <div class="tier-tagline">For orgs with compliance needs.</div>
+      <div class="tier-status">Coming soon</div>
+      <ul class="tier-features">
+        <li>SSO, audit logs, SLA</li>
+        <li>Dedicated support</li>
+        <li>On-premise option</li>
+      </ul>
+    </div>
+  </div>
+  <div class="pricing-cta-wrap">
+    <button type="button" data-waitlist-open style="padding:13px 30px;border-radius:10px;background:var(--tp-gradient-brand);color:#fff;font-weight:700;font-size:15px;border:none;cursor:pointer;font-family:var(--tp-font-body);box-shadow:0 0 30px rgba(124,92,252,0.3)">Join the waiting list</button>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta-section">
+  <h2>Every idea deserves<br/><span class="g">a team.</span></h2>
+  <p>Join the waiting list — we'll email you as soon as TwinPilot opens to your organization. Or apply to be an early <strong>beta tester</strong>: limited seats, hands-on feedback loop.</p>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
+    <button type="button" data-waitlist-open style="padding:14px 32px;font-size:16px;border-radius:12px;border:none;cursor:pointer;background:var(--tp-gradient-brand);color:#fff;font-weight:700;font-family:var(--tp-font-body);box-shadow:0 0 30px rgba(124,92,252,0.3)">Join the waiting list</button>
+    <button type="button" data-beta-open style="padding:14px 32px;font-size:16px;border-radius:12px;border:none;cursor:pointer;background:linear-gradient(135deg,#06D6A0 0%,#04a37a 100%);color:#fff;font-weight:700;font-family:var(--tp-font-body);box-shadow:0 0 30px rgba(6,214,160,0.35);transition:transform 0.15s,box-shadow 0.15s" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 0 40px rgba(6,214,160,0.5)'" onmouseout="this.style.transform='';this.style.boxShadow='0 0 30px rgba(6,214,160,0.35)'">Be a Beta tester</button>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 TwinPilot. All rights reserved.
+</footer>
+
+<!-- Waitlist modal -->
+<div class="modal-backdrop" id="waitlist-modal" hidden>
+  <div class="modal-dialog" role="dialog" aria-labelledby="waitlist-title" aria-modal="true">
+    <button type="button" class="modal-close" aria-label="Close" data-waitlist-close>×</button>
+    <h3 id="waitlist-title">Join the waiting list</h3>
+    <p>We'll email you as soon as TwinPilot opens to your organization.</p>
+    <form id="waitlist-form" novalidate>
+      <label>
+        Organization
+        <input type="text" name="organization" required maxlength="120" autocomplete="organization" />
+      </label>
+      <label>
+        Name
+        <input type="text" name="name" required maxlength="80" autocomplete="name" />
+      </label>
+      <label>
+        Email
+        <input type="email" name="email" required maxlength="254" autocomplete="email" />
+      </label>
+      <div class="modal-actions">
+        <button type="button" class="btn-ghost" data-waitlist-close>Cancel</button>
+        <button type="submit" class="btn-primary">Join</button>
+      </div>
+      <div id="waitlist-msg" class="modal-msg" hidden></div>
+    </form>
+  </div>
+</div>
+
+<!-- Beta tester modal -->
+<div class="modal-backdrop" id="beta-modal" hidden>
+  <div class="modal-dialog" role="dialog" aria-labelledby="beta-title" aria-modal="true">
+    <button type="button" class="modal-close" aria-label="Close" data-beta-close>×</button>
+    <h3 id="beta-title">Apply to be a Beta tester</h3>
+    <p>Limited seats. Tell us a bit about your team so we can pick a mix that stress-tests TwinPilot against real-world setups.</p>
+    <form id="beta-form" novalidate>
+      <label>
+        Organization
+        <input type="text" name="organization" required maxlength="120" autocomplete="organization" />
+      </label>
+      <label>
+        Name
+        <input type="text" name="name" required maxlength="80" autocomplete="name" />
+      </label>
+      <label>
+        Email
+        <input type="email" name="email" required maxlength="254" autocomplete="email" />
+      </label>
+      <label>
+        Use case (optional)
+        <textarea name="use_case" rows="3" maxlength="500" placeholder="What problem are you hoping TwinPilot solves?"></textarea>
+      </label>
+      <div class="modal-actions">
+        <button type="button" class="btn-ghost" data-beta-close>Cancel</button>
+        <button type="submit" class="btn-primary">Apply</button>
+      </div>
+      <div id="beta-msg" class="modal-msg" hidden></div>
+    </form>
+  </div>
+</div>
+
+<script>
+(function () {
+  function ready(fn) {
+    if (document.readyState !== 'loading') fn();
+    else document.addEventListener('DOMContentLoaded', fn);
+  }
+
+    // ── Docs-in-iframe overlay ───────────────────────────────────
+    // Intercept clicks on [data-docs-open] links and show
+    // /docs?embed=1 inside an iframe. The landing nav stays as the
+    // outer chrome so there's no page-navigation glitch.
+    //
+    // Key behaviour tweaks after the first try:
+    //   - The iframe is PRELOADED at page load, not on first click.
+    //     Opening it becomes an instant show/hide instead of fetching
+    //     the whole docs page and flashing a blank frame.
+    //   - Any OTHER nav link (Pricing, the in-page anchors) closes
+    //     the overlay first, so clicking Pricing while Docs is open
+    //     actually returns to the landing and scrolls to the section.
+    //   - Logo doubles as a close button when the overlay is open.
+    var docsOverlay = document.getElementById('docs-overlay');
+    var docsIframe  = document.getElementById('docs-iframe');
+    if (docsIframe && docsIframe.src !== '/docs?embed=1' && docsIframe.src.indexOf('about:') === 0) {
+      docsIframe.src = '/docs?embed=1';
+    }
+    function docsOpen() { return !!(docsOverlay && docsOverlay.classList.contains('open')); }
+    function openDocs() {
+      if (!docsOverlay) return;
+      docsOverlay.classList.add('open');
+      docsOverlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeDocs() {
+      if (!docsOverlay) return;
+      docsOverlay.classList.remove('open');
+      docsOverlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+    document.querySelectorAll('[data-docs-open]').forEach(function (el) {
+      el.addEventListener('click', function (e) { e.preventDefault(); openDocs(); });
+    });
+    // Any other nav link closes the overlay so in-page anchors (e.g.
+    // #pricing) land on the landing again instead of being hidden
+    // behind the iframe. Runs on capture so the default anchor
+    // behaviour (smooth scroll) still happens after close.
+    document.querySelectorAll('nav a').forEach(function (el) {
+      if (el.hasAttribute('data-docs-open')) return;
+      el.addEventListener('click', function () {
+        if (docsOpen()) closeDocs();
+      });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && docsOpen()) closeDocs();
+    });
+
+  ready(function () {
+
+    var modal = document.getElementById('waitlist-modal');
+    var form = document.getElementById('waitlist-form');
+    var msg = document.getElementById('waitlist-msg');
+    if (!modal || !form) return;
+
+    function openModal() {
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      var first = form.querySelector('input[name="organization"]');
+      if (first) setTimeout(function () { first.focus(); }, 50);
+    }
+
+    function closeModal() {
+      modal.hidden = true;
+      document.body.style.overflow = '';
+      if (msg) { msg.hidden = true; msg.className = 'modal-msg'; msg.textContent = ''; }
+    }
+
+    document.querySelectorAll('[data-waitlist-open]').forEach(function (el) {
+      el.addEventListener('click', function (e) { e.preventDefault(); openModal(); });
+    });
+    document.querySelectorAll('[data-waitlist-close]').forEach(function (el) {
+      el.addEventListener('click', function (e) { e.preventDefault(); closeModal(); });
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !modal.hidden) closeModal();
+    });
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) closeModal();
+    });
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var submitBtn = form.querySelector('button[type="submit"]');
+      var data = {
+        organization: form.organization.value.trim(),
+        name: form.name.value.trim(),
+        email: form.email.value.trim()
+      };
+      if (msg) { msg.hidden = true; msg.className = 'modal-msg'; }
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting…';
+      try {
+        var res = await fetch('/api/waiting-list', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        var body = await res.json().catch(function () { return {}; });
+        if (res.ok && body.ok) {
+          if (msg) {
+            msg.hidden = false;
+            msg.className = 'modal-msg success';
+            msg.textContent = "Thanks — we'll be in touch soon.";
+          }
+          form.reset();
+          setTimeout(closeModal, 2000);
+        } else if (msg) {
+          msg.hidden = false;
+          msg.className = 'modal-msg error';
+          msg.textContent = body.error || 'Could not submit — please try again.';
+        }
+      } catch (err) {
+        if (msg) {
+          msg.hidden = false;
+          msg.className = 'modal-msg error';
+          msg.textContent = 'Network error — please try again.';
+        }
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Join';
+      }
+    });
+
+    // ── Beta tester modal (identical flow, different endpoint) ──
+    var betaModal = document.getElementById('beta-modal');
+    var betaForm  = document.getElementById('beta-form');
+    var betaMsg   = document.getElementById('beta-msg');
+    if (!betaModal || !betaForm) return;
+
+    function openBeta() {
+      betaModal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      var first = betaForm.querySelector('input[name="organization"]');
+      if (first) setTimeout(function () { first.focus(); }, 50);
+    }
+    function closeBeta() {
+      betaModal.hidden = true;
+      document.body.style.overflow = '';
+      if (betaMsg) { betaMsg.hidden = true; betaMsg.className = 'modal-msg'; betaMsg.textContent = ''; }
+    }
+
+    document.querySelectorAll('[data-beta-open]').forEach(function (el) {
+      el.addEventListener('click', function (e) { e.preventDefault(); openBeta(); });
+    });
+    document.querySelectorAll('[data-beta-close]').forEach(function (el) {
+      el.addEventListener('click', function (e) { e.preventDefault(); closeBeta(); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !betaModal.hidden) closeBeta();
+    });
+    betaModal.addEventListener('click', function (e) {
+      if (e.target === betaModal) closeBeta();
+    });
+
+    betaForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var submitBtn = betaForm.querySelector('button[type="submit"]');
+      var data = {
+        organization: betaForm.organization.value.trim(),
+        name:         betaForm.name.value.trim(),
+        email:        betaForm.email.value.trim(),
+        use_case:     betaForm.use_case.value.trim()
+      };
+      if (betaMsg) { betaMsg.hidden = true; betaMsg.className = 'modal-msg'; }
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting…';
+      try {
+        var res = await fetch('/api/beta-testers', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        var body = await res.json().catch(function () { return {}; });
+        if (res.ok && body.ok) {
+          if (betaMsg) {
+            betaMsg.hidden = false;
+            betaMsg.className = 'modal-msg success';
+            betaMsg.textContent = body.full
+              ? 'All beta slots are taken — we moved you to the waiting list instead.'
+              : "You're in — we'll reach out with next steps.";
+          }
+          betaForm.reset();
+          setTimeout(closeBeta, 2500);
+        } else if (betaMsg) {
+          betaMsg.hidden = false;
+          betaMsg.className = 'modal-msg error';
+          betaMsg.textContent = body.error || 'Could not submit — please try again.';
+        }
+      } catch (err) {
+        if (betaMsg) {
+          betaMsg.hidden = false;
+          betaMsg.className = 'modal-msg error';
+          betaMsg.textContent = 'Network error — please try again.';
+        }
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Apply';
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

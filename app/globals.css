@@ -1,0 +1,208 @@
+@import "tailwindcss";
+
+/* ── Tirsa Factory — Dark theme (triv-inspired, Tirsa brand)
+   Variable naming follows the Catppuccin surface hierarchy:
+   crust < mantle < base < surface0 < surface1 < surface2
+   overlay0 < overlay1 < subtext0 < subtext1 < text            ── */
+
+:root {
+  /* ── Surface hierarchy ───────────────────────────── */
+  --crust:    #020408;
+  --mantle:   #040810;
+  --base:     #0a0e1a;
+  --surface0: #111828;
+  --surface1: #1a2340;
+  --surface2: #243058;
+  --overlay0: #6b7a9e;
+  --overlay1: #8494b8;
+
+  /* ── Text hierarchy ──────────────────────────────── */
+  --text:     #f2f6ff;
+  --subtext0: #acb9dc;
+  --subtext1: #c5cfe6;
+
+  /* ── Brand accents ───────────────────────────────── */
+  --blue:     #1463ff;
+  --sapphire: #0f4ed0;
+  --teal:     #00c2a8;
+  --green:    #1cbf6b;
+  --yellow:   #f59f00;
+  --peach:    #f5a623;
+  --red:      #e44b5f;
+  --mauve:    #1463ff;
+  --pink:     #00c2a8;
+  --lavender: #8494b8;
+
+  /* ── Brand semantic aliases (primary/accent are overridden at runtime by
+     layout.tsx inline style from brand.theme.*; defaults match Tirsa) ─── */
+  --tirsa-base: var(--base);
+  --tirsa-surface: var(--surface0);
+  --tirsa-surface-hover: var(--surface1);
+  --tirsa-surface-active: var(--surface2);
+  --tirsa-border: var(--surface2);
+  --tirsa-border-subtle: var(--surface1);
+  --tirsa-text: var(--text);
+  --tirsa-text-muted: var(--subtext0);
+  --tirsa-text-dim: var(--overlay0);
+  --tirsa-primary: var(--blue);
+  --tirsa-primary-hover: var(--sapphire);
+  --tirsa-accent: var(--teal);
+  --tirsa-accent-hover: #009d88;
+  --tirsa-success: var(--green);
+  --tirsa-warning: var(--yellow);
+  --tirsa-danger: var(--red);
+  --tirsa-gradient: linear-gradient(135deg, var(--blue) 0%, var(--teal) 100%);
+
+  /* ── Typography ──────────────────────────────────── */
+  --font-heading: "Sora", "Segoe UI", sans-serif;
+  --font-sans: "Manrope", "Segoe UI", sans-serif;
+  --font-body: "Manrope", "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
+
+  /* ── Radii ───────────────────────────────────────── */
+  --radius: 8px;
+  --radius-lg: 12px;
+}
+
+/* ── Tailwind v4 theme bridge ──────────────────────────── */
+@theme inline {
+  --color-tirsa-base: var(--base);
+  --color-tirsa-surface: var(--surface0);
+  --color-tirsa-surface-hover: var(--surface1);
+  --color-tirsa-surface-active: var(--surface2);
+  --color-tirsa-border: var(--surface2);
+  --color-tirsa-border-subtle: var(--surface1);
+  --color-tirsa-text: var(--text);
+  --color-tirsa-text-muted: var(--subtext0);
+  --color-tirsa-text-dim: var(--overlay0);
+  --color-tirsa-primary: var(--blue);
+  --color-tirsa-primary-hover: var(--sapphire);
+  --color-tirsa-accent: var(--teal);
+  --color-tirsa-success: var(--green);
+  --color-tirsa-warning: var(--yellow);
+  --color-tirsa-danger: var(--red);
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+/* ── Reset & base ──────────────────────────────────────── */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, #__next {
+  height: 100%;
+  background: var(--base);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Scrollbar ─────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--mantle); }
+::-webkit-scrollbar-thumb { background: var(--surface2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--overlay0); }
+
+/* ── Utility classes ───────────────────────────────────── */
+.truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ── Animations ────────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+/* pulse uses opacity only — GPU-composited, cheap */
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+@keyframes spin { to { transform: rotate(360deg); } }
+/* glow replaced by cheaper opacity pulse — box-shadow animations force repaints */
+@keyframes livePulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+.fade-in { animation: fadeIn 0.2s ease-out; }
+/* Only apply pulse when element is actually visible — avoids running on hidden layers */
+.pulse   { animation: pulse 2s infinite; will-change: opacity; }
+.spin    { animation: spin 1s linear infinite; will-change: transform; }
+.glow    { animation: pulse 2s ease-in-out infinite; }
+
+/* ── Responsive breakpoints ────────────────────────────────── */
+/* Mobile-first: styles below apply ≤ 767px */
+
+/* Safe area insets for devices with notch/home indicator */
+.safe-top    { padding-top: env(safe-area-inset-top); }
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+
+/* Bottom nav — visible only on mobile */
+.bottom-nav {
+  display: none;
+}
+
+/* Right sidebar — hidden on mobile by default */
+.sidebar-desktop {
+  display: flex;
+}
+
+/* Left nav rail — shown on desktop */
+.nav-rail {
+  display: flex;
+}
+
+/* App sidebar (wider, labeled) — shown on desktop */
+.app-sidebar {
+  display: flex;
+}
+
+/* Stats grid — layout controlled via inline style with isMobile */
+
+@media (max-width: 767px) {
+  /* Bottom nav replaces left rail */
+  .bottom-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: calc(56px + env(safe-area-inset-bottom));
+    padding-bottom: env(safe-area-inset-bottom);
+    background: var(--crust);
+    border-top: 1px solid var(--surface1);
+    align-items: center;
+    justify-content: space-around;
+    z-index: 100;
+  }
+
+  .nav-rail {
+    display: none;
+  }
+
+  .app-sidebar,
+  .app-sidebar-spacer,
+  .integrations-rail {
+    display: none !important;
+  }
+
+  /* Sidebar off on mobile */
+  .sidebar-desktop {
+    display: none !important;
+  }
+
+  /* Tighten dashboard padding */
+  .dashboard-container {
+    padding: 12px !important;
+    padding-bottom: calc(72px + env(safe-area-inset-bottom)) !important;
+  }
+
+  /* Smaller project cards */
+  .project-card {
+    padding: 14px !important;
+  }
+
+  /* Full-width main content */
+  .main-content {
+    width: 100% !important;
+    padding-bottom: calc(60px + env(safe-area-inset-bottom));
+  }
+
+  /* Touch-friendly minimum tap target */
+  button { min-height: 36px; }
+}
+

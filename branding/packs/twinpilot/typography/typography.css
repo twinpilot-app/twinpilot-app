@@ -1,0 +1,67 @@
+/*
+ * Twin Pilot — Typography
+ *
+ * Inter for everything (clean, geometric, universal).
+ * JetBrains Mono for code accents.
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap");
+
+:root {
+  --tp-font-heading: "Inter", -apple-system, "Segoe UI", sans-serif;
+  --tp-font-body:    "Inter", -apple-system, "Segoe UI", sans-serif;
+  --tp-font-mono:    "JetBrains Mono", "Fira Code", monospace;
+
+  /* Type scale */
+  --tp-type-display: 64px;
+  --tp-type-h1:      48px;
+  --tp-type-h2:      36px;
+  --tp-type-h3:      24px;
+  --tp-type-h4:      20px;
+  --tp-type-body-lg: 18px;
+  --tp-type-body:    15px;
+  --tp-type-body-sm: 13px;
+  --tp-type-caption: 11px;
+
+  /* Leading */
+  --tp-leading-tight:   1.1;
+  --tp-leading-snug:    1.25;
+  --tp-leading-normal:  1.5;
+  --tp-leading-relaxed: 1.65;
+}
+
+/* ── Heading classes ── */
+
+.tp-display,
+.tp-h1, .tp-h2, .tp-h3, .tp-h4 {
+  font-family: var(--tp-font-heading);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--tp-text);
+}
+
+.tp-display { font-size: var(--tp-type-display); line-height: var(--tp-leading-tight); font-weight: 800; letter-spacing: -0.03em; }
+.tp-h1      { font-size: var(--tp-type-h1);      line-height: var(--tp-leading-tight); }
+.tp-h2      { font-size: var(--tp-type-h2);      line-height: var(--tp-leading-snug); }
+.tp-h3      { font-size: var(--tp-type-h3);      line-height: var(--tp-leading-snug); }
+.tp-h4      { font-size: var(--tp-type-h4);      line-height: 1.3; }
+
+/* ── Body classes ── */
+
+.tp-body, .tp-body-sm, .tp-caption {
+  font-family: var(--tp-font-body);
+  color: var(--tp-text);
+}
+
+.tp-body    { font-size: var(--tp-type-body);    line-height: var(--tp-leading-normal); }
+.tp-body-sm { font-size: var(--tp-type-body-sm); line-height: var(--tp-leading-normal); }
+.tp-caption { font-size: var(--tp-type-caption); line-height: var(--tp-leading-relaxed); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; color: var(--tp-text-muted); }
+
+/* ── Gradient text ── */
+
+.tp-gradient-text {
+  background: var(--tp-gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

@@ -1,0 +1,37 @@
+{
+  "name": "command-center",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "prepare": "node scripts/brand-prebuild.mjs",
+    "brand:prepare": "node scripts/brand-prebuild.mjs",
+    "predev": "node scripts/brand-prebuild.mjs",
+    "prebuild": "node scripts/brand-prebuild.mjs",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.101.1",
+    "@types/js-yaml": "^4.0.9",
+    "github-slugger": "^2.0.0",
+    "js-yaml": "^4.1.1",
+    "libsodium-wrappers": "^0.8.3",
+    "lucide-react": "^1.7.0",
+    "next": "16.2.2",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "react-markdown": "^10.1.0",
+    "rehype-slug": "^6.0.0",
+    "remark-gfm": "^4.0.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/libsodium-wrappers": "^0.7.14",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}

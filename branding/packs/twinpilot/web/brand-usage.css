@@ -1,0 +1,146 @@
+/*
+ * Twin Pilot — Brand Usage Reference
+ *
+ * Dark-first classes following Linear/Vercel/Supabase conventions.
+ */
+
+body {
+  background: var(--tp-bg);
+  color: var(--tp-text);
+  font-family: var(--tp-font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Hero ── */
+
+.tp-hero-title {
+  font-family: var(--tp-font-heading);
+  font-size: clamp(36px, 6vw, var(--tp-type-display));
+  font-weight: 800;
+  line-height: var(--tp-leading-tight);
+  letter-spacing: -0.03em;
+  color: var(--tp-text);
+}
+
+.tp-hero-subtitle {
+  font-family: var(--tp-font-body);
+  font-size: clamp(16px, 2vw, var(--tp-type-body-lg));
+  line-height: var(--tp-leading-normal);
+  color: var(--tp-text-muted);
+  max-width: 560px;
+}
+
+/* ── Buttons ── */
+
+.tp-btn-primary {
+  background: var(--tp-gradient-brand);
+  color: #ffffff;
+  border: 0;
+  border-radius: 10px;
+  padding: 12px 24px;
+  font-family: var(--tp-font-heading);
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.15s;
+  box-shadow: 0 0 24px rgba(124, 92, 252, 0.25);
+}
+
+.tp-btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 0 32px rgba(124, 92, 252, 0.35);
+}
+
+.tp-btn-secondary {
+  background: var(--tp-surface);
+  color: var(--tp-text);
+  border: 1px solid var(--tp-border);
+  border-radius: 10px;
+  padding: 12px 24px;
+  font-family: var(--tp-font-heading);
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.tp-btn-secondary:hover {
+  border-color: var(--tp-violet-500);
+}
+
+/* ── Cards ── */
+
+.tp-card {
+  background: var(--tp-surface);
+  border: 1px solid var(--tp-border-subtle);
+  border-radius: 14px;
+  padding: 24px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.tp-card:hover {
+  border-color: var(--tp-border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* ── Glow effects (like Linear/Vercel) ── */
+
+.tp-glow {
+  position: relative;
+}
+
+.tp-glow::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: var(--tp-gradient-brand);
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: -1;
+  filter: blur(12px);
+}
+
+.tp-glow:hover::before {
+  opacity: 0.3;
+}
+
+/* ── Badge / Chip ── */
+
+.tp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--tp-font-body);
+  background: rgba(124, 92, 252, 0.1);
+  color: var(--tp-violet-400);
+  border: 1px solid rgba(124, 92, 252, 0.2);
+}
+
+/* ── Code blocks ── */
+
+.tp-code {
+  font-family: var(--tp-font-mono);
+  font-size: 13px;
+  background: var(--tp-surface-2);
+  border: 1px solid var(--tp-border-subtle);
+  border-radius: 8px;
+  padding: 16px 20px;
+  color: var(--tp-text);
+  overflow-x: auto;
+}
+
+/* ── Section divider ── */
+
+.tp-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--tp-border) 50%, transparent 100%);
+  margin: 48px 0;
+}

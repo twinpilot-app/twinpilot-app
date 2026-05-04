@@ -1,0 +1,50 @@
+{
+  "id": "twinpilot",
+  "name": "Twin Pilot",
+  "shortName": "TwinPilot",
+  "productName": "Twin Pilot",
+  "tagline": "AI-Powered Software Factory",
+  "legalName": "Tirsa Software",
+  "holdingName": "Tirsa Software",
+  "domain": "twinpilot.app",
+  "supportEmail": "",
+  "urls": {
+    "website": "https://twinpilot.app",
+    "landing": "/landing.html",
+    "docs": "/help",
+    "github": "https://github.com/twinpilot-app/twinpilot-app"
+  },
+  "cli": {
+    "packageName": "twin-pilot-cli",
+    "binName": "twin-pilot",
+    "configDir": ".twinpilot",
+    "repoUrl": "https://github.com/twinpilot-app/twinpilot-app",
+    "repoName": "twinpilot-app"
+  },
+  "assets": {
+    "logoWordmark": "/brand/logos/twinpilot-logo-wordmark.svg",
+    "logoMark": "/brand/logos/twinpilot-logo-mark.svg",
+    "logoOnDark": "/brand/logos/twinpilot-logo-on-dark.svg",
+    "logoWhite": "/brand/logos/twinpilot-logo-white.svg",
+    "logoBlack": "/brand/logos/twinpilot-logo-black.svg",
+    "favicon": "/brand/icons/favicon.svg",
+    "ogImage": "/brand/github/twinpilot-github-avatar.svg",
+    "holdingLogoWhite": "/brand/logos/tirsa-logo-tirsa-software-white.svg"
+  },
+  "copy": {
+    "maintenanceMessage": "Twin Pilot is undergoing scheduled maintenance.",
+    "onboardWelcome": "Welcome to Twin Pilot",
+    "providersDisclaimerEn": "Twin Pilot orchestrates AI pipelines and does not provide model inference itself.",
+    "providersDisclaimerPt": "Twin Pilot orquestra pipelines de IA e não provê inferência de modelos."
+  },
+  "theme": {
+    "tokensCss": "/brand/colors/tokens.css",
+    "typographyCss": "/brand/typography/typography.css",
+    "defaultMode": "dark",
+    "primary": "#7c5cfc",
+    "primaryHover": "#6344e0",
+    "accent": "#06d6a0",
+    "accentHover": "#04b386",
+    "themeColor": "#7c5cfc"
+  }
+}

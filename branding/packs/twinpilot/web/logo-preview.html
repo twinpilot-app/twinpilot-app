@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <title>Twin Pilot — Logo Preview</title>
+  <link rel="stylesheet" href="../colors/tokens.css" />
+  <link rel="stylesheet" href="../typography/typography.css" />
+  <style>
+    body { background: var(--tp-bg); color: var(--tp-text); font-family: var(--tp-font-body); margin: 0; padding: 40px; }
+    h1 { font-family: var(--tp-font-heading); font-weight: 800; font-size: 28px; letter-spacing: -0.02em; margin-bottom: 32px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+    .card { background: var(--tp-surface); border: 1px solid var(--tp-border-subtle); border-radius: 14px; padding: 24px; }
+    .card h3 { font-size: 13px; font-weight: 600; color: var(--tp-text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 16px; }
+    .card img, .card object { max-width: 100%; height: auto; }
+    .light { background: #F6F7FB; }
+    .dark { background: var(--tp-ink-950); }
+    .swatch { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 24px; }
+    .swatch-item { width: 48px; height: 48px; border-radius: 10px; border: 1px solid var(--tp-border-subtle); }
+    .gradient-bar { height: 48px; border-radius: 10px; background: var(--tp-gradient-brand); margin-top: 24px; }
+  </style>
+</head>
+<body>
+  <h1>Twin Pilot — Brand Preview</h1>
+
+  <div class="grid">
+    <div class="card dark">
+      <h3>Logo Mark (Dark)</h3>
+      <img src="../logos/twinpilot-logo-mark.svg" width="128" />
+    </div>
+
+    <div class="card dark">
+      <h3>Wordmark (Dark)</h3>
+      <img src="../logos/twinpilot-logo-wordmark.svg" width="320" />
+    </div>
+
+    <div class="card dark">
+      <h3>On Dark</h3>
+      <img src="../logos/twinpilot-logo-on-dark.svg" width="320" />
+    </div>
+
+    <div class="card light">
+      <h3>Black (Light BG)</h3>
+      <img src="../logos/twinpilot-logo-black.svg" width="320" />
+    </div>
+
+    <div class="card dark">
+      <h3>White (Dark BG)</h3>
+      <img src="../logos/twinpilot-logo-white.svg" width="320" />
+    </div>
+
+    <div class="card dark">
+      <h3>Favicon</h3>
+      <img src="../icons/favicon.svg" width="64" />
+    </div>
+
+    <div class="card dark">
+      <h3>GitHub Avatar</h3>
+      <img src="../github/twinpilot-github-avatar.svg" width="128" style="border-radius: 50%;" />
+    </div>
+
+    <div class="card">
+      <h3>Brand Gradient</h3>
+      <div class="gradient-bar"></div>
+    </div>
+
+    <div class="card">
+      <h3>Color Swatches</h3>
+      <div class="swatch">
+        <div class="swatch-item" style="background: #7C5CFC;" title="Violet 500"></div>
+        <div class="swatch-item" style="background: #06D6A0;" title="Cyan 500"></div>
+        <div class="swatch-item" style="background: #3B82F6;" title="Blue 500"></div>
+        <div class="swatch-item" style="background: #08090F;" title="Ink 950"></div>
+        <div class="swatch-item" style="background: #0E1019;" title="Ink 900"></div>
+        <div class="swatch-item" style="background: #1E2235;" title="Ink 700"></div>
+        <div class="swatch-item" style="background: #F0F2F8;" title="Text"></div>
+        <div class="swatch-item" style="background: #8B92AB;" title="Muted"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Typography</h3>
+      <div style="font-family: var(--tp-font-heading); font-weight: 800; font-size: 32px; letter-spacing: -0.03em; margin-bottom: 8px;">
+        <span style="color: var(--tp-text);">Twin</span>
+        <span style="background: var(--tp-gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Pilot</span>
+      </div>
+      <p style="color: var(--tp-text-muted); font-size: 15px; line-height: 1.5;">
+        Build software with AI agents. Ship faster with structured pipelines.
+      </p>
+      <code style="font-family: var(--tp-font-mono); font-size: 13px; color: var(--tp-violet-400);">npx twinpilot init</code>
+    </div>
+  </div>
+</body>
+</html>
