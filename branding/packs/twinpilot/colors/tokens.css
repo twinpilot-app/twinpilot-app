@@ -1,0 +1,67 @@
+/*
+ * Twin Pilot — Design Tokens
+ *
+ * Dark-first palette inspired by Linear, Vercel, Supabase.
+ * Primary gradient: electric violet → cyan (AI duality).
+ */
+
+:root {
+  /* ── Ink (dark backgrounds) ── */
+  --tp-ink-950: #08090f;
+  --tp-ink-900: #0e1019;
+  --tp-ink-800: #151825;
+  --tp-ink-700: #1e2235;
+  --tp-ink-600: #2a2f48;
+  --tp-ink-500: #3d4463;
+
+  /* ── Cloud (light mode) ── */
+  --tp-cloud-50:  #f6f7fb;
+  --tp-cloud-100: #ebeef6;
+  --tp-cloud-200: #d8dded;
+
+  /* ── Primary: Electric Violet ── */
+  --tp-violet-500: #7c5cfc;
+  --tp-violet-400: #9b82fd;
+  --tp-violet-600: #6344e0;
+  --tp-violet-700: #4e32b8;
+
+  /* ── Accent: Cyan ── */
+  --tp-cyan-500: #06d6a0;
+  --tp-cyan-400: #34e4b8;
+  --tp-cyan-600: #04b386;
+
+  /* ── Secondary: Electric Blue ── */
+  --tp-blue-500: #3b82f6;
+  --tp-blue-400: #60a5fa;
+  --tp-blue-600: #2563eb;
+
+  /* ── Semantic ── */
+  --tp-success: #22c55e;
+  --tp-warning: #f59e0b;
+  --tp-danger:  #ef4444;
+  --tp-info:    #3b82f6;
+
+  /* ── Gradients ── */
+  --tp-gradient-brand: linear-gradient(135deg, #7c5cfc 0%, #06d6a0 100%);
+  --tp-gradient-glow:  linear-gradient(135deg, rgba(124,92,252,0.15) 0%, rgba(6,214,160,0.08) 100%);
+  --tp-gradient-text:  linear-gradient(135deg, #9b82fd 0%, #34e4b8 100%);
+
+  /* ── Semantic (dark theme — default) ── */
+  --tp-bg:         var(--tp-ink-950);
+  --tp-surface:    var(--tp-ink-900);
+  --tp-surface-2:  var(--tp-ink-800);
+  --tp-text:       #f0f2f8;
+  --tp-text-muted: #8b92ab;
+  --tp-border:     var(--tp-ink-600);
+  --tp-border-subtle: var(--tp-ink-700);
+}
+
+[data-theme="light"] {
+  --tp-bg:         var(--tp-cloud-50);
+  --tp-surface:    #ffffff;
+  --tp-surface-2:  var(--tp-cloud-100);
+  --tp-text:       var(--tp-ink-950);
+  --tp-text-muted: var(--tp-ink-500);
+  --tp-border:     var(--tp-cloud-200);
+  --tp-border-subtle: var(--tp-cloud-100);
+}

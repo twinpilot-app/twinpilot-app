@@ -1,0 +1,8 @@
+<svg width="480" height="80" viewBox="0 0 480 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(8, 12) scale(0.22)">
+    <path d="M56 80 L128 128 L56 176 L56 80Z" fill="#08090F"/>
+    <path d="M200 80 L128 128 L200 176 L200 80Z" fill="#08090F" fill-opacity="0.7"/>
+    <circle cx="128" cy="128" r="8" fill="#08090F"/>
+  </g>
+  <text x="72" y="52" font-family="Inter, -apple-system, sans-serif" font-weight="800" font-size="34" letter-spacing="-0.03em" fill="#08090F">TwinPilot</text>
+</svg>

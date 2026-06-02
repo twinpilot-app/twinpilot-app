@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>TwinPilot — The Autonomous Factory</title>
+  <link rel="stylesheet" href="../colors/tokens.css"/>
+  <link rel="stylesheet" href="../typography/typography.css"/>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{background:var(--tp-bg);color:var(--tp-text);font-family:var(--tp-font-body);-webkit-font-smoothing:antialiased}
+
+    /* Supabase-style: dark green accent, feature tiles, code snippets */
+    nav{max-width:1140px;margin:0 auto;padding:18px 24px;display:flex;align-items:center;gap:28px}
+    nav .logo{font-family:var(--tp-font-heading);font-weight:800;font-size:18px;letter-spacing:-0.03em;display:flex;align-items:center}
+    nav .logo .mark{width:24px;height:24px;position:relative;display:inline-flex;margin-right:6px}
+    nav .logo .mark svg{width:24px;height:24px}
+    nav .logo .p{background:var(--tp-gradient-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    nav .links{display:flex;gap:22px;flex:1}
+    nav .links a{color:var(--tp-text-muted);text-decoration:none;font-size:14px;font-weight:500;transition:color 0.15s}
+    nav .links a:hover{color:var(--tp-text)}
+    nav .actions{display:flex;gap:10px}
+    nav .actions a{padding:7px 16px;border-radius:6px;font-weight:600;font-size:13px;text-decoration:none}
+    nav .sign-in{color:var(--tp-text-muted);border:1px solid var(--tp-border-subtle)}
+    nav .start{background:var(--tp-cyan-500);color:#000}
+
+    /* Hero */
+    .hero{text-align:center;padding:100px 24px 60px;position:relative}
+    .hero::before{content:"";position:absolute;top:0;left:0;right:0;height:500px;background:linear-gradient(180deg, rgba(6,214,160,0.05) 0%, transparent 100%);pointer-events:none}
+    .hero .announce{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:999px;background:rgba(6,214,160,0.08);border:1px solid rgba(6,214,160,0.2);color:var(--tp-cyan-400);font-size:13px;font-weight:600;margin-bottom:28px}
+    .hero h1{font-family:var(--tp-font-heading);font-size:clamp(36px,6vw,64px);font-weight:800;letter-spacing:-0.04em;line-height:1.08;margin-bottom:20px}
+    .hero h1 .em{color:var(--tp-cyan-400)}
+    .hero p{font-size:18px;color:var(--tp-text-muted);max-width:540px;margin:0 auto 32px;line-height:1.6}
+    .hero .btns{display:flex;gap:12px;justify-content:center}
+    .hero .btn-g{padding:12px 28px;border-radius:8px;background:var(--tp-cyan-500);color:#000;font-weight:700;font-size:15px;text-decoration:none;transition:opacity 0.15s}
+    .hero .btn-g:hover{opacity:0.85}
+    .hero .btn-d{padding:12px 28px;border-radius:8px;border:1px solid var(--tp-border);background:transparent;color:var(--tp-text);font-weight:600;font-size:15px;text-decoration:none}
+
+    /* Code block */
+    .code-section{max-width:700px;margin:0 auto 80px;padding:0 24px}
+    .code-block{background:var(--tp-surface);border:1px solid var(--tp-border-subtle);border-radius:12px;padding:20px 24px;font-family:var(--tp-font-mono);font-size:13px;line-height:1.8;overflow-x:auto}
+    .code-block .comment{color:#555}
+    .code-block .keyword{color:var(--tp-violet-400)}
+    .code-block .string{color:var(--tp-cyan-400)}
+    .code-block .fn{color:#e4b55a}
+
+    /* Feature tiles — Supabase grid */
+    .features{max-width:1140px;margin:0 auto;padding:40px 24px 80px}
+    .features .label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--tp-cyan-500);margin-bottom:8px;text-align:center}
+    .features h2{font-family:var(--tp-font-heading);font-size:36px;font-weight:700;letter-spacing:-0.02em;text-align:center;margin-bottom:48px}
+    .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--tp-border-subtle);border-radius:16px;overflow:hidden}
+    .tile{background:var(--tp-surface);padding:32px;transition:background 0.2s}
+    .tile:hover{background:var(--tp-surface-2)}
+    .tile .emoji{font-size:28px;margin-bottom:14px}
+    .tile h3{font-size:16px;font-weight:700;margin-bottom:8px}
+    .tile p{font-size:14px;color:var(--tp-text-muted);line-height:1.6}
+
+    /* Stats */
+    .stats{max-width:800px;margin:0 auto;padding:60px 24px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+    .stats .num{font-family:var(--tp-font-heading);font-size:40px;font-weight:800;letter-spacing:-0.03em;background:var(--tp-gradient-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .stats .lbl{font-size:13px;color:var(--tp-text-muted);margin-top:4px}
+
+    /* CTA */
+    .bottom{text-align:center;padding:80px 24px;background:linear-gradient(180deg, transparent 0%, rgba(6,214,160,0.03) 100%)}
+    .bottom h2{font-family:var(--tp-font-heading);font-size:40px;font-weight:800;letter-spacing:-0.03em;margin-bottom:12px}
+    .bottom p{color:var(--tp-text-muted);font-size:16px;margin-bottom:28px}
+
+    footer{border-top:1px solid var(--tp-border-subtle);padding:28px 24px;text-align:center;font-size:13px;color:var(--tp-text-muted)}
+    @media(max-width:768px){.tiles{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">
+    <span class="mark"><svg viewBox="0 0 256 256" fill="none"><path d="M56 80 L128 128 L56 176Z" fill="#7C5CFC"/><path d="M200 80 L128 128 L200 176Z" fill="#06D6A0"/><circle cx="128" cy="128" r="6" fill="#fff"/></svg></span>
+    Twin<span class="p">Pilot</span>
+  </div>
+  <div class="links"><a href="#">Product</a><a href="#">Agents</a><a href="#">Pricing</a><a href="#">Docs</a></div>
+  <div class="actions"><a href="#" class="sign-in">Sign in</a><a href="#" class="start">Start free</a></div>
+</nav>
+
+<section class="hero">
+  <div class="announce">New: Marketplace is live</div>
+  <h1>The autonomous<br/><span class="em">factory.</span></h1>
+  <p>Design your pipeline. Assign your agents. TwinPilot runs the factory autonomously — any niche, any scale.</p>
+  <div class="btns">
+    <a href="#" class="btn-g">Start your factory</a>
+    <a href="#" class="btn-d">Read the docs</a>
+  </div>
+</section>
+
+<section class="code-section">
+  <div class="code-block">
+    <span class="comment"># Install the CLI</span><br/>
+    $ <span class="fn">npx</span> <span class="string">twinpilot</span> init<br/><br/>
+    <span class="comment"># Create a project from a brief</span><br/>
+    $ <span class="fn">twinpilot</span> new <span class="string">"A meal planning app for busy parents"</span><br/><br/>
+    <span class="comment"># Run the pipeline</span><br/>
+    $ <span class="fn">twinpilot</span> run <span class="keyword">--pipeline</span> full
+  </div>
+</section>
+
+<section class="features">
+  <div class="label">Platform</div>
+  <h2>Everything you need to run an AI factory</h2>
+  <div class="tiles">
+    <div class="tile"><div class="emoji">🤖</div><h3>Agent Personas</h3><p>Define roles, capabilities, tools, and guardrails. Each agent is a specialist in your crew.</p></div>
+    <div class="tile"><div class="emoji">🔄</div><h3>Pipelines</h3><p>Sequential or SIPOC mode. Phases, contracts, artifact flow — structure your workflows.</p></div>
+    <div class="tile"><div class="emoji">🏭</div><h3>Factories</h3><p>Group agents and pipelines into factories. Inherit, extend, share via marketplace.</p></div>
+    <div class="tile"><div class="emoji">📦</div><h3>Artifact Storage</h3><p>Supabase Storage or local filesystem. Agents read and write artifacts through tools.</p></div>
+    <div class="tile"><div class="emoji">🔔</div><h3>Notifications</h3><p>Telegram, webhooks, in-app. Gate approvals with inline buttons. Never miss a beat.</p></div>
+    <div class="tile"><div class="emoji">🛒</div><h3>Marketplace</h3><p>Install agents and factories from the community store. Publish and monetize your own.</p></div>
+  </div>
+</section>
+
+<section class="stats">
+  <div><div class="num">114+</div><div class="lbl">Built-in agents</div></div>
+  <div><div class="num">13</div><div class="lbl">Squads</div></div>
+  <div><div class="num">4</div><div class="lbl">LLM providers</div></div>
+  <div><div class="num">∞</div><div class="lbl">Custom agents</div></div>
+</section>
+
+<section class="bottom">
+  <h2>Every idea deserves a team.</h2>
+  <p>Start free. Scale with your ambition.</p>
+  <a href="#" class="btn-g" style="padding:14px 32px;font-size:16px;border-radius:10px;text-decoration:none;display:inline-block">Get started</a>
+</section>
+
+<footer>&copy; 2026 TwinPilot. Built for builders.</footer>
+
+</body>
+</html>

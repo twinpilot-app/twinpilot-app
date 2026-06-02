@@ -1,0 +1,33 @@
+# Files and directories Vercel should NOT upload during deploy.
+#
+# This file is carried into the brand-deploy mirror by sync-vercel.yml
+# (it copies the whole services/command-center/ tree to a tmpdir and
+# pushes from there). Vercel reads .vercelignore at the root of that
+# pushed tree and skips matching paths.
+#
+# Goal: keep the deploy upload lean. Vercel rebuilds dependencies +
+# Next output anyway, so node_modules/.next/.turbo are pure noise.
+# Dev-only docs (CLAUDE.md/AGENTS.md/.claude/) help local agents but
+# nothing in the deployed app reads them.
+
+# Build outputs — Vercel regenerates these from package.json + source
+node_modules/
+.next/
+.turbo/
+
+# Local environment files (Vercel uses dashboard env vars + env pulls)
+.env.local
+.env.*.local
+
+# Dev tooling that lives alongside source — claude-code agent definitions,
+# editor metadata, MCP configs. None of it ships to runtime.
+.claude/
+.cursor/
+.vscode/
+CLAUDE.md
+AGENTS.md
+.mcp.json
+
+# Brand prebuild moves the active brand's pack into public/brand/ at
+# build time. Vercel runs `npm run build` which triggers brand-prebuild,
+# so the source packs/configs need to ship — DO NOT add branding/ here.

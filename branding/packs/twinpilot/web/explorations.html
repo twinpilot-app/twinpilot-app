@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <title>Twin Pilot — Font & Slogan Explorations</title>
+  <link rel="stylesheet" href="../colors/tokens.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Sora:wght@600;700;800&family=Space+Grotesk:wght@500;600;700&family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Satoshi:wght@500;700;900&family=General+Sans:wght@500;600;700&family=Manrope:wght@500;600;700;800&family=Urbanist:wght@500;600;700;800&family=Clash+Display:wght@500;600;700&family=DM+Sans:wght@500;600;700&family=Geist:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    body { background: var(--tp-bg); color: var(--tp-text); font-family: "Inter", sans-serif; margin: 0; padding: 40px; }
+    h1 { font-size: 24px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px; }
+    h2 { font-size: 16px; font-weight: 700; color: var(--tp-text-muted); margin: 40px 0 16px; text-transform: uppercase; letter-spacing: 0.06em; }
+    .subtitle { font-size: 14px; color: var(--tp-text-muted); margin-bottom: 32px; }
+
+    .font-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 16px; }
+    .font-card {
+      background: var(--tp-surface);
+      border: 1px solid var(--tp-border-subtle);
+      border-radius: 14px;
+      padding: 24px;
+      transition: border-color 0.2s;
+    }
+    .font-card:hover { border-color: var(--tp-violet-500); }
+    .font-card .font-name { font-size: 11px; font-weight: 600; color: var(--tp-text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
+    .font-card .wordmark { font-size: 42px; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 6px; }
+    .font-card .twin { color: var(--tp-text); }
+    .font-card .pilot { background: var(--tp-gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .font-card .variant { font-size: 28px; letter-spacing: -0.02em; color: var(--tp-text-muted); margin-top: 8px; }
+    .font-card .mono { font-family: "JetBrains Mono", monospace; font-size: 14px; color: var(--tp-violet-400); margin-top: 10px; }
+
+    .slogan-grid { display: grid; grid-template-columns: 1fr; gap: 12px; max-width: 800px; }
+    .slogan-card {
+      background: var(--tp-surface);
+      border: 1px solid var(--tp-border-subtle);
+      border-radius: 12px;
+      padding: 20px 24px;
+      transition: border-color 0.2s;
+    }
+    .slogan-card:hover { border-color: var(--tp-cyan-500); }
+    .slogan-card .category { font-size: 10px; font-weight: 600; color: var(--tp-violet-400); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+    .slogan-card .slogan { font-family: "Inter", sans-serif; font-size: 24px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.3; }
+    .slogan-card .context { font-size: 13px; color: var(--tp-text-muted); margin-top: 8px; line-height: 1.5; }
+
+    .hero-preview {
+      background: var(--tp-ink-900);
+      border: 1px solid var(--tp-border-subtle);
+      border-radius: 16px;
+      padding: 48px 40px;
+      text-align: center;
+      margin-top: 16px;
+    }
+    .hero-preview .hero-title { font-size: 48px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 16px; }
+    .hero-preview .hero-sub { font-size: 18px; color: var(--tp-text-muted); line-height: 1.5; max-width: 520px; margin: 0 auto 24px; }
+    .hero-preview .hero-btn {
+      display: inline-block; padding: 12px 28px; border-radius: 10px;
+      background: var(--tp-gradient-brand); color: #fff; font-weight: 700; font-size: 15px;
+      text-decoration: none; box-shadow: 0 0 24px rgba(124,92,252,0.25);
+    }
+  </style>
+</head>
+<body>
+
+<h1>Twin Pilot — Explorations</h1>
+<div class="subtitle">Font pairings and slogan options. Nothing here overwrites the approved branding.</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2>Font Explorations</h2>
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<div class="font-grid">
+
+  <div class="font-card">
+    <div class="font-name">Inter (current)</div>
+    <div class="wordmark" style="font-family: 'Inter'; font-weight: 800;">
+      <span class="twin">Twin</span><span class="pilot">Pilot</span>
+    </div>
+    <div class="variant" style="font-family: 'Inter'; font-weight: 700;">Twin Pilot</div>
+    <div class="mono">twinpilot.app</div>
+  </div>
+
+  <div class="font-card">
+    <div class="font-name">Sora</div>
+    <div class="wordmark" style="font-family: 'Sora'; font-weight: 800;">
+      <span class="twin">Twin</span><span class="pilot">Pilot</span>
+    </div>
+    <div class="variant" style="font-family: 'Sora'; font-weight: 700;">Twin Pilot</div>
+    <div class="mono">twinpilot.app</div>
+  </div>
+
+  <div class="font-card">
+    <div class="font-name">Space Grotesk</div>
+    <div class="wordmark" style="font-family: 'Space Grotesk'; font-weight: 700;">
+      <span class="twin">Twin</span><span class="pilot">Pilot</span>
+    </div>
+    <div class="variant" style="font-family: 'Space Grotesk'; font-weight: 600;">Twin Pilot</div>
+    <div class="mono">twinpilot.app</div>
+  </div>
+
+  <div class="font-card">
+    <div class="font-name">Outfit</div>
+    <div class="wordmark" style="font-family: 'Outfit'; font-weight: 800;">
+      <span class="twin">Twin</span><span class="pilot">Pilot</span>
+    </div>
+    <div class="variant" style="font-family: 'Outfit'; font-weight: 700;">Twin Pilot</div>
+    <div class="mono">twinpilot.app</div>
+  </div>
+
+  <div class="font-card">
+    <div class="font-name">Plus Jakarta Sans</div>
+    <div class="wordmark" style="font-family: 'Plus Jakarta Sans'; font-weight: 800;">
+      <span class="twin">Twin</span><span class="pilot">Pilot</span>
+    </div>
+    <div class="variant" style="font-family: 'Plus Jakarta Sans'; font-weight: 700;">Twin Pilot</div>
+    <div class="mono">twinpilot.app</div>
+  </div>
+
+  <div class="font-card">
+    <div class="font-name">Manrope</div>
+    <div class="wordmark" style="font-family: 'Manrope'; font-weight: 800;">
+      <span class="twin">Twin</span><span class="pilot">Pilot</span>
+    </div>
+    <div class="variant" style="font-family: 'Manrope'; font-weight: 700;">Twin Pilot</div>
+    <div class="mono">twinpilot.app</div>
+  </div>
+
+  <div class="font-card">
+    <div class="font-name">Urbanist</div>
+    <div class="wordmark" style="font-family: 'Urbanist'; font-weight: 800;">
+      <span class="twin">Twin</span><span class="pilot">Pilot</span>
+    </div>
+    <div class="variant" style="font-family: 'Urbanist'; font-weight: 700;">Twin Pilot</div>
+    <div class="mono">twinpilot.app</div>
+  </div>
+
+  <div class="font-card">
+    <div class="font-name">DM Sans</div>
+    <div class="wordmark" style="font-family: 'DM Sans'; font-weight: 700;">
+      <span class="twin">Twin</span><span class="pilot">Pilot</span>
+    </div>
+    <div class="variant" style="font-family: 'DM Sans'; font-weight: 600;">Twin Pilot</div>
+    <div class="mono">twinpilot.app</div>
+  </div>
+
+  <div class="font-card">
+    <div class="font-name">Geist (Vercel)</div>
+    <div class="wordmark" style="font-family: 'Geist'; font-weight: 800;">
+      <span class="twin">Twin</span><span class="pilot">Pilot</span>
+    </div>
+    <div class="variant" style="font-family: 'Geist'; font-weight: 700;">Twin Pilot</div>
+    <div class="mono">twinpilot.app</div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2>Slogan Explorations</h2>
+<div class="subtitle">TwinPilot is niche-agnostic — the factory can be autonomous and serve any domain, not just software.</div>
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<div class="slogan-grid">
+
+  <div class="slogan-card">
+    <div class="category">Founder's pick</div>
+    <div class="slogan">Let the cool AI people get the things done.</div>
+    <div class="context">Casual confidence. Your agents are the talented crew you always wanted — they just happen to be AI.</div>
+  </div>
+
+  <div class="slogan-card">
+    <div class="category">Universal / Niche-agnostic</div>
+    <div class="slogan">Your AI crew. Any mission.</div>
+    <div class="context">Works across niches — software, content, research, ops. The crew adapts to what you need.</div>
+  </div>
+
+  <div class="slogan-card">
+    <div class="category">Universal / Niche-agnostic</div>
+    <div class="slogan">Agents for everything you build.</div>
+    <div class="context">Broad scope. Not just code — anything that can be structured into a pipeline.</div>
+  </div>
+
+  <div class="slogan-card">
+    <div class="category">Duality</div>
+    <div class="slogan">Two minds. One mission.</div>
+    <div class="context">Pure duality. Human + AI aligned on a shared goal. Domain-agnostic.</div>
+  </div>
+
+  <div class="slogan-card">
+    <div class="category">Duality</div>
+    <div class="slogan">You think. They execute.</div>
+    <div class="context">Clean split. Strategy is yours, execution is theirs. Any domain.</div>
+  </div>
+
+  <div class="slogan-card">
+    <div class="category">Delegation</div>
+    <div class="slogan">Delegate like a founder.</div>
+    <div class="context">Aspirational. You're the CEO, your agents are the team that makes it happen.</div>
+  </div>
+
+  <div class="slogan-card">
+    <div class="category">Delegation</div>
+    <div class="slogan">Brief in. Results out.</div>
+    <div class="context">Minimal. Input → output. Works for any workflow, any industry.</div>
+  </div>
+
+  <div class="slogan-card">
+    <div class="category">Delegation</div>
+    <div class="slogan">Ship while you sleep.</div>
+    <div class="context">Provocative. Async productivity — agents work around the clock on any task.</div>
+  </div>
+
+  <div class="slogan-card">
+    <div class="category">Autonomy</div>
+    <div class="slogan">The autonomous factory.</div>
+    <div class="context">Bold. The factory runs itself — agents orchestrate, produce, deliver. You steer.</div>
+  </div>
+
+  <div class="slogan-card">
+    <div class="category">Autonomy</div>
+    <div class="slogan">Set the course. Agents fly.</div>
+    <div class="context">Pilot metaphor. You're the captain, agents are the crew that operates the aircraft.</div>
+  </div>
+
+  <div class="slogan-card">
+    <div class="category">Cool factor</div>
+    <div class="slogan">AI agents that actually deliver.</div>
+    <div class="context">No BS. Cuts through the hype — these agents produce real output, not just chat.</div>
+  </div>
+
+  <div class="slogan-card">
+    <div class="category">Cool factor</div>
+    <div class="slogan">The crew you wish you had.</div>
+    <div class="context">Emotional. Every solo founder's dream — a full capable team, on demand.</div>
+  </div>
+
+  <div class="slogan-card">
+    <div class="category">Scale</div>
+    <div class="slogan">One person. Infinite output.</div>
+    <div class="context">Power fantasy. You + agents = unlimited production capacity.</div>
+  </div>
+
+  <div class="slogan-card">
+    <div class="category">Scale</div>
+    <div class="slogan">Every idea deserves a team.</div>
+    <div class="context">Democratization. Any idea, any niche — now has a full crew to make it real.</div>
+  </div>
+
+  <div class="slogan-card">
+    <div class="category">Provocative</div>
+    <div class="slogan">You brief. They build. You ship.</div>
+    <div class="context">Three beats. Human intent → agent execution → delivered value. Any domain.</div>
+  </div>
+
+  <div class="slogan-card">
+    <div class="category">Provocative</div>
+    <div class="slogan">Stop doing. Start directing.</div>
+    <div class="context">Paradigm shift. You're the director, agents are the cast. Works beyond software.</div>
+  </div>
+
+  <div class="slogan-card">
+    <div class="category">Minimal</div>
+    <div class="slogan">Orchestrate anything.</div>
+    <div class="context">Two words. Maximum breadth. The factory handles whatever pipeline you design.</div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2>Hero Previews</h2>
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<div class="hero-preview" style="font-family: 'Inter', sans-serif;">
+  <div class="hero-title">
+    <span style="color: var(--tp-text);">Let the cool AI people</span><br/>
+    <span style="background: var(--tp-gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">get the things done.</span>
+  </div>
+  <div class="hero-sub">Your AI crew handles the work — research, design, code, content, ops. You set the direction, they deliver.</div>
+  <a href="#" class="hero-btn">Meet your crew</a>
+</div>
+
+<div class="hero-preview" style="font-family: 'Inter', sans-serif; margin-top: 24px;">
+  <div class="hero-title">
+    <span style="color: var(--tp-text);">You brief. They build.</span><br/>
+    <span style="background: var(--tp-gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">You ship.</span>
+  </div>
+  <div class="hero-sub">AI agents orchestrated through structured pipelines — from idea to delivered output, with you in control.</div>
+  <a href="#" class="hero-btn">Start building</a>
+</div>
+
+<div class="hero-preview" style="font-family: 'Space Grotesk', sans-serif; margin-top: 24px;">
+  <div class="hero-title" style="font-weight: 700;">
+    <span style="color: var(--tp-text);">The autonomous</span><br/>
+    <span style="background: var(--tp-gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">factory.</span>
+  </div>
+  <div class="hero-sub">Design your pipeline. Assign your agents. TwinPilot runs the factory — you steer.</div>
+  <a href="#" class="hero-btn">Launch your factory</a>
+</div>
+
+<div class="hero-preview" style="font-family: 'Outfit', sans-serif; margin-top: 24px;">
+  <div class="hero-title" style="font-weight: 800;">
+    <span style="color: var(--tp-text);">Every idea deserves</span><br/>
+    <span style="background: var(--tp-gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">a team.</span>
+  </div>
+  <div class="hero-sub">TwinPilot gives you a full AI crew — analysts, creators, builders, reviewers — orchestrated through pipelines you design.</div>
+  <a href="#" class="hero-btn">Get started free</a>
+</div>
+
+<div class="hero-preview" style="font-family: 'Inter', sans-serif; margin-top: 24px;">
+  <div class="hero-title">
+    <span style="color: var(--tp-text);">One person.</span><br/>
+    <span style="background: var(--tp-gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Infinite output.</span>
+  </div>
+  <div class="hero-sub">Solo founders, small teams, enterprises — TwinPilot scales your capacity with autonomous AI agents.</div>
+  <a href="#" class="hero-btn">Scale now</a>
+</div>
+
+</body>
+</html>
